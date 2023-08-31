@@ -13,9 +13,11 @@ final class ViewModel: ObservableObject {
     
     @Published var text: String = ""
     @Published var convertedText: String = "$0"
+    private let converter = Converters()
     
     func convertMoney(){
-        
+        self.convertedText = converter.convertEuroToUSD(euro: text)
+        self.hideKeyboard()
     }
     
     private func hideKeyboard(){
