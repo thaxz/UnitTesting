@@ -8,13 +8,23 @@
 import XCTest
 
 final class ConverterTests: XCTestCase {
+    
+    // creating a reference to the converter
+    // sut = system under testing
+    private var sut: Converters!
+    
+    // It's going to be called before each function
+    override func setUpWithError() throws {
+        sut = Converters()
+    }
+    
+    // It's going to be called after each function
+    override func tearDownWithError() throws {
+        sut = nil
+    }
 
     /// Create a simple conversion  with a positive number
     func test_convert10_returns1080(){
-        // creating a reference to the converter
-        // sut = system under testing
-        let sut = Converters()
-        
         let actual = sut.convertEuroToUSD(euro: "10")
         let expected = "$10.80"
         
@@ -24,8 +34,6 @@ final class ConverterTests: XCTestCase {
     
     /// Negative numbers returns an error message
     func test_convertNeg10_returnsErrorMessage(){
-        let sut = Converters()
-        
         let actual = sut.convertEuroToUSD(euro: "-10")
         let expected = "Please enter a positive number."
         
