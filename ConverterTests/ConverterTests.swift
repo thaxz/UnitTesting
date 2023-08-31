@@ -63,9 +63,14 @@ final class ConverterTests: XCTestCase {
     
     func test_convertBigNumber_returnsErrorMessage(){
         let actual = sut.convertEuroToUSD(euro: "10000000000")
-        let expected = "Value is too big to convert."
+        let expected = "Value too big to convert."
         
         XCTAssertEqual(actual, expected)
+    }
+    
+    func test_SampleTest(){
+        let actual = true
+        XCTAssertTrue(actual)
     }
     
 }
