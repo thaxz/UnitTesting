@@ -37,8 +37,35 @@ final class ConverterTests: XCTestCase {
         let actual = sut.convertEuroToUSD(euro: "-10")
         let expected = "Please enter a positive number."
         
-        // testing if it's equal to what we're expecting
         XCTAssertEqual(actual, expected)
     }
 
+    func test_convertEmptyString_returnsErrorMessage(){
+        let actual = sut.convertEuroToUSD(euro: "")
+        let expected = "Please enter a positive number."
+        
+        XCTAssertEqual(actual, expected)
+    }
+    
+    func test_invalidInput_returnsErrorMessage(){
+        let actual = sut.convertEuroToUSD(euro: "Hello, World!")
+        let expected = "Please enter a positive number."
+        
+        XCTAssertEqual(actual, expected)
+    }
+    
+    func test_convertDecimal1050_returnsErrorMessage(){
+        let actual = sut.convertEuroToUSD(euro: "10.50")
+        let expected = "$11.34"
+        
+        XCTAssertEqual(actual, expected)
+    }
+    
+    func test_convertBigNumber_returnsErrorMessage(){
+        let actual = sut.convertEuroToUSD(euro: "10000000000")
+        let expected = "Value is too big to convert."
+        
+        XCTAssertEqual(actual, expected)
+    }
+    
 }
